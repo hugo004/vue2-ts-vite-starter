@@ -10,7 +10,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { PDFDocument } from 'pdf-lib'
 import HelloWorld from './components/HelloWorld.vue'
 
 @Component({
@@ -36,21 +35,6 @@ import HelloWorld from './components/HelloWorld.vue'
       }
     },
   },
-
-  async mounted() {
-    const url = '/pdf/form.pdf'
-    const formPdfBytes = await fetch(url).then((res) => res.arrayBuffer())
-    const pdfDoc = await PDFDocument.load(formPdfBytes)
-    const form = pdfDoc.getForm()
-    console.log(form)
-    const name = form.getTextField('Name')
-    name.setText('test')
-    console.log(name)
-    const bytes = await pdfDoc.save()
-    const bloburl = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }))
-    console.log(bloburl)
-  },
-
 })
 export default class App extends Vue {}
 </script>
