@@ -1,4 +1,4 @@
-# vue-form-viewer
+# vue2-ts-vite-starter
 
 ## Project setup
 ```
